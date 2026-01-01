@@ -2,7 +2,7 @@
 
 LearnFlow is a modern, full-featured learning platform designed specifically for web developers. Built with React, TypeScript, and Material UI, it provides personalized learning paths, progress tracking, interactive assessments, and a beautiful Google-inspired interface.
 
-> **Current Status**: Feature-complete MVP prototype ready for production deployment with authentication and backend integration.
+> **Current Status**: Feature-complete MVP prototype ready for production deployment with authentication and backend integration in progress.
 
 ## ✨ Current Features
 
