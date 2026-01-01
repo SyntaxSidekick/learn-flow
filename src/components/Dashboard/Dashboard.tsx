@@ -25,9 +25,10 @@ import TopicLearning from '../Learning/TopicLearning';
 import DeveloperPathLearning from '../Learning/DeveloperPathLearning';
 import UserProfile from '../Profile/UserProfile';
 import SearchBar from '../Search/SearchBar';
+import ThemeToggle from '../ThemeToggle';
 import { mockUser } from '../../data/mockData';
 
-const DRAWER_WIDTH = 280;
+const DRAWER_WIDTH = 240;
 
 const Dashboard: React.FC = () => {
   const theme = useTheme();
@@ -145,7 +146,7 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8fafc' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
       {/* App Bar - Full Width */}
       <AppBar
         position="fixed"
@@ -153,11 +154,11 @@ const Dashboard: React.FC = () => {
         sx={{
           width: '100%',
           zIndex: theme.zIndex.drawer + 1,
-          backgroundColor: 'rgba(255, 255, 255, 0.98)',
+          bgcolor: 'background.paper',
           backdropFilter: 'blur(20px)',
-          borderBottom: '1px solid rgba(0, 0, 0, 0.06)',
-          color: '#1e293b',
-          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
+          borderBottom: 1,
+          borderColor: 'divider',
+          color: 'text.primary',
         }}
       >
         <Toolbar sx={{ justifyContent: 'space-between', py: 1.5, minHeight: { xs: 64, sm: 70 } }}>
@@ -171,7 +172,7 @@ const Dashboard: React.FC = () => {
               sx={{ 
                 display: { lg: 'none' },
                 '&:hover': {
-                  backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                  bgcolor: 'action.hover',
                 }
               }}
             >
@@ -189,7 +190,7 @@ const Dashboard: React.FC = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: '0 4px 14px rgba(102, 126, 234, 0.3)',
+                  boxShadow: 2,
                 }}
               >
                 <Typography sx={{ color: 'white', fontWeight: 700, fontSize: '1.2rem', letterSpacing: '-0.5px' }}>
@@ -242,13 +243,15 @@ const Dashboard: React.FC = () => {
           </Box>
 
           <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 1 } }}>
+            <ThemeToggle />
+            
             <IconButton 
               color="inherit"
               sx={{
                 borderRadius: 2,
                 transition: 'all 0.2s',
                 '&:hover': {
-                  backgroundColor: 'rgba(99, 102, 241, 0.08)',
+                  bgcolor: 'action.hover',
                   transform: 'translateY(-1px)',
                 }
               }}
@@ -275,7 +278,7 @@ const Dashboard: React.FC = () => {
                 borderRadius: 2,
                 transition: 'all 0.2s',
                 '&:hover': {
-                  backgroundColor: 'rgba(99, 102, 241, 0.08)',
+                  bgcolor: 'action.hover',
                   transform: 'translateY(-1px)',
                 }
               }}
@@ -295,7 +298,7 @@ const Dashboard: React.FC = () => {
                 borderRadius: 2,
                 transition: 'all 0.2s',
                 '&:hover': {
-                  backgroundColor: 'rgba(99, 102, 241, 0.08)',
+                  bgcolor: 'action.hover',
                   transform: 'scale(1.05)',
                 }
               }}
@@ -306,8 +309,8 @@ const Dashboard: React.FC = () => {
                 sx={{ 
                   width: { xs: 36, sm: 40 }, 
                   height: { xs: 36, sm: 40 },
-                  border: '2px solid rgba(99, 102, 241, 0.15)',
-                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                  border: 2,
+                  borderColor: 'primary.light',
                   transition: 'all 0.2s',
                 }}
               />
@@ -336,14 +339,14 @@ const Dashboard: React.FC = () => {
             mt: 1,
             minWidth: 200,
             borderRadius: 3,
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            bgcolor: 'background.paper',
             backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(0, 0, 0, 0.08)',
-            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            border: 1,
+            borderColor: 'divider',
           },
         }}
       >
-        <Box sx={{ px: 2, py: 1.5, borderBottom: '1px solid rgba(0, 0, 0, 0.08)' }}>
+        <Box sx={{ px: 2, py: 1.5, borderBottom: 1, borderColor: 'divider' }}>
           <Typography variant="subtitle2" fontWeight={600}>
             {mockUser.name}
           </Typography>
@@ -359,7 +362,7 @@ const Dashboard: React.FC = () => {
           sx={{ 
             py: 1.5,
             '&:hover': {
-              backgroundColor: 'rgba(99, 102, 241, 0.1)',
+              bgcolor: 'action.hover',
             }
           }}
         >
@@ -371,7 +374,7 @@ const Dashboard: React.FC = () => {
           sx={{ 
             py: 1.5,
             '&:hover': {
-              backgroundColor: 'rgba(99, 102, 241, 0.1)',
+              bgcolor: 'action.hover',
             }
           }}
         >
@@ -384,7 +387,7 @@ const Dashboard: React.FC = () => {
             py: 1.5,
             color: 'error.main',
             '&:hover': {
-              backgroundColor: 'rgba(239, 68, 68, 0.1)',
+              backgroundColor: 'error.light',
             }
           }}
         >
@@ -409,11 +412,12 @@ const Dashboard: React.FC = () => {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: DRAWER_WIDTH,
-              borderRight: '1px solid rgba(0, 0, 0, 0.06)',
-              backgroundColor: '#ffffff',
+              border: 1,
+              borderColor: 'divider',
+              bgcolor: 'background.paper',
               mt: { lg: '70px' },
               height: { lg: 'calc(100vh - 70px)' },
-              boxShadow: { xs: '4px 0 16px rgba(0, 0, 0, 0.1)', lg: 'none' },
+              boxShadow: { xs: 2, lg: 'none' },
             },
           }}
         >
@@ -427,9 +431,9 @@ const Dashboard: React.FC = () => {
         sx={{
           flexGrow: 1,
           width: { lg: `calc(100% - ${DRAWER_WIDTH}px)` },
-          ml: { lg: `${DRAWER_WIDTH}px` },
+          ml: { lg: '40px' },
           mt: { xs: '64px', sm: '70px' },
-          backgroundColor: '#f8fafc',
+          bgcolor: 'background.default',
           minHeight: { xs: 'calc(100vh - 64px)', sm: 'calc(100vh - 70px)' },
         }}
       >

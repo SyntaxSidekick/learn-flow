@@ -230,27 +230,27 @@ const Sidebar: React.FC<{
               my: 0.5,
               transition: 'all 0.2s ease-in-out',
               '&.Mui-selected': {
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                color: 'white',
-                boxShadow: '0 4px 12px rgba(102, 126, 234, 0.4)',
+                bgcolor: 'primary.main',
+                color: 'primary.contrastText',
+                boxShadow: 2,
                 '&:hover': {
-                  background: 'linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%)',
+                  bgcolor: 'primary.dark',
                   transform: 'translateY(-1px)',
-                  boxShadow: '0 6px 16px rgba(102, 126, 234, 0.5)',
+                  boxShadow: 3,
                 },
                 '& .MuiListItemIcon-root': {
-                  color: 'white',
+                  color: 'primary.contrastText',
                 },
               },
               '&:hover': {
-                backgroundColor: 'rgba(102, 126, 234, 0.08)',
+                bgcolor: 'action.hover',
                 transform: 'translateX(4px)',
               },
             }}
           >
             <ListItemIcon
               sx={{
-                color: selectedItem === item.path ? 'white' : 'text.secondary',
+                color: selectedItem === item.path ? 'primary.contrastText' : 'text.secondary',
                 minWidth: 40,
               }}
             >
@@ -268,8 +268,8 @@ const Sidebar: React.FC<{
                 label={item.badge}
                 size="small"
                 sx={{
-                  backgroundColor: selectedItem === item.path ? 'rgba(255,255,255,0.2)' : 'primary.main',
-                  color: selectedItem === item.path ? 'white' : 'white',
+                  bgcolor: selectedItem === item.path ? 'action.selected' : 'primary.main',
+                  color: 'primary.contrastText',
                   fontWeight: 600,
                   height: 20,
                   fontSize: '0.75rem',
@@ -338,7 +338,7 @@ const Sidebar: React.FC<{
   };
 
   return (
-    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#ffffff' }}>
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', bgcolor: 'background.paper' }}>
       {/* Main Navigation */}
       <Box sx={{ flex: 1, py: 2, overflowY: 'auto', overflowX: 'hidden' }}>
         <Typography

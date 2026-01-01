@@ -7,6 +7,7 @@ import {
   CardContent,
   Avatar,
   Button,
+  useTheme,
 } from '@mui/material';
 import {
   TrendingUp,
@@ -24,21 +25,26 @@ const StatCard: React.FC<{
   title: string;
   value: string | number;
   icon: React.ReactNode;
-  color: string;
+  color: 'primary' | 'success' | 'warning' | 'secondary' | 'error' | 'info';
   subtitle?: string;
-}> = ({ title, value, icon, color, subtitle }) => (
+}> = ({ title, value, icon, color, subtitle }) => {
+  const theme = useTheme();
+  const colorValue = theme.palette[color].main;
+  
+  return (
   <Card 
     sx={{ 
       position: 'relative',
       overflow: 'hidden',
-      background: 'rgba(255, 255, 255, 0.8)',
+      bgcolor: 'background.paper',
       backdropFilter: 'blur(20px)',
-      border: '1px solid rgba(255, 255, 255, 0.2)',
+      border: 1,
+      borderColor: 'divider',
       borderRadius: 4,
       transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
       '&:hover': {
         transform: 'translateY(-8px)',
-        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
+        boxShadow: 3,
       },
       '&::before': {
         content: '""',
@@ -47,7 +53,7 @@ const StatCard: React.FC<{
         left: 0,
         right: 0,
         height: 4,
-        background: `linear-gradient(135deg, ${color} 0%, ${color}cc 100%)`,
+        bgcolor: `${color}.main`,
       }
     }}
   >
@@ -86,9 +92,9 @@ const StatCard: React.FC<{
             width: 56,
             height: 56,
             borderRadius: '14px',
-            background: `linear-gradient(135deg, ${color} 0%, ${color}DD 100%)`,
-            color: 'white',
-            boxShadow: `0 6px 20px ${color}30`,
+            bgcolor: `${color}.main`,
+            color: `${color}.contrastText`,
+            boxShadow: 2,
             ml: 2,
           }}
         >
@@ -97,13 +103,14 @@ const StatCard: React.FC<{
       </Box>
     </CardContent>
   </Card>
-);
+  );
+};
 
 const MainContent: React.FC = () => {
   const stats = mockDashboardStats;
 
   return (
-    <Box sx={{ p: 4, backgroundColor: '#f8fafc', minHeight: '100vh' }}>
+    <Box sx={{ p: 4, bgcolor: 'background.default', minHeight: '100vh' }}>
       <Container maxWidth="xl">
         {/* Welcome Header */}
         <Box sx={{ mb: 8 }}>
@@ -116,8 +123,9 @@ const MainContent: React.FC = () => {
                 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 fontSize: '32px',
                 fontWeight: 700,
-                boxShadow: '0 12px 40px rgba(102, 126, 234, 0.3)',
-                border: '4px solid rgba(255, 255, 255, 0.8)',
+                boxShadow: 3,
+                border: 4,
+                borderColor: 'background.paper',
               }}
             >
               {mockUser.name.charAt(0)}
@@ -128,10 +136,7 @@ const MainContent: React.FC = () => {
                 fontWeight="800" 
                 sx={{ 
                   mb: 1,
-                  background: 'linear-gradient(135deg, #1e293b 0%, #64748b 100%)',
-                  backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
+                  color: 'text.primary',
                 }}
               >
                 Welcome back, {mockUser.name.split(' ')[0]}! 👋
@@ -140,7 +145,7 @@ const MainContent: React.FC = () => {
                 variant="h6" 
                 sx={{ 
                   fontWeight: 500,
-                  color: '#64748b',
+                  color: 'text.secondary',
                   letterSpacing: '0.5px',
                 }}
               >
@@ -177,28 +182,28 @@ const MainContent: React.FC = () => {
             title="Learning Paths"
             value={`${stats.completedPaths}/${stats.totalLearningPaths}`}
             icon={<School />}
-            color="#1976d2"
+            color="primary"
             subtitle="Completed / Total"
           />
           <StatCard
             title="Hours Learned"
             value={stats.hoursLearned}
             icon={<AccessTime />}
-            color="#4caf50"
+            color="success"
             subtitle="This month"
           />
           <StatCard
             title="Current Streak"
             value={`${stats.currentStreak} days`}
             icon={<TrendingUp />}
-            color="#ff9800"
+            color="warning"
             subtitle="Keep it up!"
           />
           <StatCard
             title="Achievements"
             value={mockUser.achievements.length}
             icon={<EmojiEvents />}
-            color="#9c27b0"
+            color="secondary"
             subtitle="Unlocked"
           />
         </Box>
@@ -225,9 +230,9 @@ const MainContent: React.FC = () => {
           <Card 
             sx={{ 
               borderRadius: '20px', 
-              border: '1px solid', 
+              border: 1, 
               borderColor: 'divider',
-              background: 'linear-gradient(135deg, rgba(25, 118, 210, 0.02) 0%, rgba(25, 118, 210, 0.01) 100%)',
+              bgcolor: 'background.paper',
               overflow: 'hidden'
             }}
           >
@@ -243,9 +248,9 @@ const MainContent: React.FC = () => {
           <Card 
             sx={{ 
               borderRadius: '20px', 
-              border: '1px solid', 
+              border: 1, 
               borderColor: 'divider',
-              background: 'linear-gradient(135deg, rgba(255, 152, 0, 0.02) 0%, rgba(255, 152, 0, 0.01) 100%)',
+              bgcolor: 'background.paper',
               overflow: 'hidden'
             }}
           >
@@ -350,9 +355,9 @@ const MainContent: React.FC = () => {
         sx={{ 
           textAlign: 'center',
           py: 6,
-          background: 'linear-gradient(135deg, rgba(25, 118, 210, 0.05) 0%, rgba(76, 175, 80, 0.05) 100%)',
+          bgcolor: 'action.hover',
           borderRadius: '24px',
-          border: '1px solid',
+          border: 1,
           borderColor: 'divider'
         }}
       >

@@ -113,29 +113,33 @@ const SearchBar: React.FC = () => {
           size="small"
           sx={{
             '& .MuiOutlinedInput-root': {
-              background: 'rgba(255, 255, 255, 0.9)',
+              bgcolor: 'background.paper',
               backdropFilter: 'blur(20px)',
               borderRadius: '16px',
-              border: '1px solid rgba(102, 126, 234, 0.2)',
+              border: 1,
+              borderColor: 'divider',
               transition: 'all 0.3s ease',
               '& fieldset': {
                 border: 'none',
               },
               '&:hover': {
-                background: 'rgba(255, 255, 255, 1)',
-                borderColor: 'rgba(102, 126, 234, 0.4)',
-                boxShadow: '0 4px 20px rgba(102, 126, 234, 0.1)',
+                borderColor: 'primary.light',
+                boxShadow: 1,
               },
               '&.Mui-focused': {
-                background: 'rgba(255, 255, 255, 1)',
-                borderColor: '#667eea',
-                boxShadow: '0 4px 20px rgba(102, 126, 234, 0.2)',
+                borderColor: 'primary.main',
+                boxShadow: 2,
               },
             },
             '& .MuiInputBase-input': {
               py: 1.5,
               px: 2,
               fontWeight: 500,
+              color: 'text.primary',
+              '&::placeholder': {
+                color: 'text.secondary',
+                opacity: 0.7,
+              },
             },
           }}
           InputProps={{
