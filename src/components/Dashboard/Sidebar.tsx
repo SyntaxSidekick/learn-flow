@@ -338,92 +338,78 @@ const Sidebar: React.FC<{
   };
 
   return (
-    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      {/* Logo/Brand Section */}
-      <Box sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 1 }}>
-        <Box
-          sx={{
-            width: 32,
-            height: 32,
-            borderRadius: '50%',
-            background: 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            fontWeight: 'bold',
-            fontSize: '1rem',
-          }}
-        >
-          LF
-        </Box>
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: 600,
-            background: 'linear-gradient(135deg, #1976d2 0%, #42a5f5 100%)',
-            backgroundClip: 'text',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}
-        >
-          LearnFlow
-        </Typography>
-      </Box>
-
-      <Divider sx={{ mx: 2 }} />
-
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#ffffff' }}>
       {/* Main Navigation */}
-      <Box sx={{ flex: 1, py: 1 }}>
+      <Box sx={{ flex: 1, py: 2, overflowY: 'auto', overflowX: 'hidden' }}>
         <Typography
           variant="overline"
           sx={{
             px: 3,
-            py: 1,
+            py: 1.5,
+            pt: 2,
             display: 'block',
-            color: 'text.secondary',
-            fontWeight: 600,
-            fontSize: '0.75rem',
+            color: '#64748b',
+            fontWeight: 700,
+            fontSize: '0.7rem',
+            letterSpacing: '1px',
           }}
         >
-          MAIN
+          MAIN MENU
         </Typography>
-        <List dense>{renderMenuItems(mainMenuItems)}</List>
+        <List dense sx={{ px: 1 }}>{renderMenuItems(mainMenuItems)}</List>
 
         <Typography
           variant="overline"
           sx={{
             px: 3,
-            py: 1,
-            mt: 2,
+            py: 1.5,
+            mt: 3,
             display: 'block',
-            color: 'text.secondary',
-            fontWeight: 600,
-            fontSize: '0.75rem',
+            color: '#64748b',
+            fontWeight: 700,
+            fontSize: '0.7rem',
+            letterSpacing: '1px',
           }}
         >
-          INSIGHTS
+          ACCOUNT & INSIGHTS
         </Typography>
-        <List dense>{renderMenuItems(secondaryMenuItems)}</List>
+        <List dense sx={{ px: 1 }}>{renderMenuItems(secondaryMenuItems)}</List>
       </Box>
 
       {/* Quick Stats */}
-      <Box sx={{ p: 2, mt: 'auto' }}>
+      <Box sx={{ p: 2.5, mt: 'auto', borderTop: '1px solid rgba(0, 0, 0, 0.06)' }}>
         <Box
           sx={{
-            backgroundColor: 'primary.main',
-            borderRadius: 2,
-            p: 2,
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            borderRadius: 3,
+            p: 2.5,
             color: 'white',
             textAlign: 'center',
+            boxShadow: '0 4px 12px rgba(102, 126, 234, 0.25)',
+            position: 'relative',
+            overflow: 'hidden',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'radial-gradient(circle at top right, rgba(255,255,255,0.15) 0%, transparent 60%)',
+            }
           }}
         >
-          <Typography variant="h4" sx={{ fontWeight: 600, mb: 0.5 }}>
-            7
-          </Typography>
-          <Typography variant="caption" sx={{ opacity: 0.9 }}>
-            Day Streak 🔥
-          </Typography>
+          <Box sx={{ position: 'relative', zIndex: 1 }}>
+            <Typography variant="h3" sx={{ fontWeight: 700, mb: 0.5, fontSize: '2.5rem' }}>
+              7
+            </Typography>
+            <Typography variant="body2" sx={{ fontWeight: 600, letterSpacing: '0.5px' }}>
+              DAY STREAK 🔥
+            </Typography>
+            <Typography variant="caption" sx={{ opacity: 0.85, display: 'block', mt: 0.5 }}>
+              Keep it going!
+            </Typography>
+          </Box>
         </Box>
       </Box>
     </Box>

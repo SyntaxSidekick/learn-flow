@@ -146,21 +146,22 @@ const Dashboard: React.FC = () => {
 
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8fafc' }}>
-      {/* App Bar */}
+      {/* App Bar - Full Width */}
       <AppBar
         position="fixed"
         elevation={0}
         sx={{
-          width: { lg: `calc(100% - ${DRAWER_WIDTH}px)` },
-          ml: { lg: `${DRAWER_WIDTH}px` },
+          width: '100%',
           zIndex: theme.zIndex.drawer + 1,
-          backgroundColor: 'rgba(255, 255, 255, 0.95)',
+          backgroundColor: 'rgba(255, 255, 255, 0.98)',
           backdropFilter: 'blur(20px)',
-          borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.06)',
           color: '#1e293b',
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)',
         }}
       >
-        <Toolbar sx={{ justifyContent: 'space-between', py: 1 }}>
+        <Toolbar sx={{ justifyContent: 'space-between', py: 1.5, minHeight: { xs: 64, sm: 70 } }}>
+          {/* Left Section: Menu Toggle + Branding */}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             <IconButton
               color="inherit"
@@ -168,7 +169,6 @@ const Dashboard: React.FC = () => {
               edge="start"
               onClick={handleDrawerToggle}
               sx={{ 
-                mr: 2, 
                 display: { lg: 'none' },
                 '&:hover': {
                   backgroundColor: 'rgba(99, 102, 241, 0.1)',
@@ -178,37 +178,55 @@ const Dashboard: React.FC = () => {
               <MenuIcon />
             </IconButton>
             
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            {/* LearnFlow Branding - Always Visible */}
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
               <Box
                 sx={{
-                  width: 32,
-                  height: 32,
-                  borderRadius: 2,
+                  width: 40,
+                  height: 40,
+                  borderRadius: 2.5,
                   background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  boxShadow: '0 4px 14px rgba(102, 126, 234, 0.3)',
                 }}
               >
-                <Typography sx={{ color: 'white', fontWeight: 'bold', fontSize: '1rem' }}>
+                <Typography sx={{ color: 'white', fontWeight: 700, fontSize: '1.2rem', letterSpacing: '-0.5px' }}>
                   L
                 </Typography>
               </Box>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  fontWeight: 600,
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                  backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  display: { xs: 'none', sm: 'block' },
-                }}
-              >
-                LearnFlow
-              </Typography>
+              <Box>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  sx={{
+                    fontWeight: 700,
+                    fontSize: '1.3rem',
+                    letterSpacing: '-0.5px',
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    lineHeight: 1,
+                  }}
+                >
+                  LearnFlow
+                </Typography>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: 'text.secondary',
+                    fontSize: '0.7rem',
+                    fontWeight: 500,
+                    letterSpacing: '0.5px',
+                    textTransform: 'uppercase',
+                    display: { xs: 'none', sm: 'block' }
+                  }}
+                >
+                  Learning Platform
+                </Typography>
+              </Box>
             </Box>
           </Box>
 
@@ -223,41 +241,62 @@ const Dashboard: React.FC = () => {
             <SearchBar />
           </Box>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 1 } }}>
             <IconButton 
               color="inherit"
               sx={{
+                borderRadius: 2,
+                transition: 'all 0.2s',
                 '&:hover': {
-                  backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                  backgroundColor: 'rgba(99, 102, 241, 0.08)',
+                  transform: 'translateY(-1px)',
                 }
               }}
             >
-              <Badge badgeContent={3} color="error">
-                <Notifications />
+              <Badge 
+                badgeContent={3} 
+                color="error"
+                sx={{
+                  '& .MuiBadge-badge': {
+                    fontSize: '0.65rem',
+                    height: 18,
+                    minWidth: 18,
+                    fontWeight: 600,
+                  }
+                }}
+              >
+                <Notifications sx={{ fontSize: { xs: 22, sm: 24 } }} />
               </Badge>
             </IconButton>
 
             <IconButton 
               color="inherit"
               sx={{
+                borderRadius: 2,
+                transition: 'all 0.2s',
                 '&:hover': {
-                  backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                  backgroundColor: 'rgba(99, 102, 241, 0.08)',
+                  transform: 'translateY(-1px)',
                 }
               }}
             >
-              <Settings />
+              <Settings sx={{ fontSize: { xs: 22, sm: 24 } }} />
             </IconButton>
             
             <IconButton
-              size="large"
               edge="end"
               aria-label="account of current user"
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
               sx={{
+                p: 0.5,
+                ml: 1,
+                borderRadius: 2,
+                transition: 'all 0.2s',
                 '&:hover': {
-                  backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                  backgroundColor: 'rgba(99, 102, 241, 0.08)',
+                  transform: 'scale(1.05)',
                 }
               }}
             >
@@ -265,9 +304,11 @@ const Dashboard: React.FC = () => {
                 src={mockUser.avatar}
                 alt={mockUser.name}
                 sx={{ 
-                  width: 36, 
-                  height: 36,
-                  border: '2px solid rgba(99, 102, 241, 0.2)',
+                  width: { xs: 36, sm: 40 }, 
+                  height: { xs: 36, sm: 40 },
+                  border: '2px solid rgba(99, 102, 241, 0.15)',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.2s',
                 }}
               />
             </IconButton>
@@ -368,11 +409,11 @@ const Dashboard: React.FC = () => {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: DRAWER_WIDTH,
-              borderRight: 'none',
-              backgroundColor: 'rgba(255, 255, 255, 0.95)',
-              backdropFilter: 'blur(20px)',
-              mt: { lg: '64px' }, // Account for AppBar height
-              boxShadow: '8px 0 32px rgba(0, 0, 0, 0.05)',
+              borderRight: '1px solid rgba(0, 0, 0, 0.06)',
+              backgroundColor: '#ffffff',
+              mt: { lg: '70px' },
+              height: { lg: 'calc(100vh - 70px)' },
+              boxShadow: { xs: '4px 0 16px rgba(0, 0, 0, 0.1)', lg: 'none' },
             },
           }}
         >
@@ -386,9 +427,10 @@ const Dashboard: React.FC = () => {
         sx={{
           flexGrow: 1,
           width: { lg: `calc(100% - ${DRAWER_WIDTH}px)` },
-          mt: '64px', // Account for AppBar height
+          ml: { lg: `${DRAWER_WIDTH}px` },
+          mt: { xs: '64px', sm: '70px' },
           backgroundColor: '#f8fafc',
-          minHeight: 'calc(100vh - 64px)',
+          minHeight: { xs: 'calc(100vh - 64px)', sm: 'calc(100vh - 70px)' },
         }}
       >
         {renderMainContent()}
